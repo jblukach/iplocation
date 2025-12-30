@@ -10,6 +10,7 @@ def handler(event, context):
     month = datetime.datetime.now().strftime('%m')
     day = datetime.datetime.now().strftime('%d')
     hour = datetime.datetime.now().strftime('%H')
+    now = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
     s3use1 = boto3.client('s3', region_name = 'us-east-1')
     s3use2 = boto3.client('s3', region_name = 'us-east-2')
@@ -32,10 +33,20 @@ def handler(event, context):
         f.write(response.content)
     f.close()
 
-    response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
-    response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+    with open(f'/tmp/{code}.updated', 'w') as f:
+        f.write(now)
+    f.close()
+
+    if len(response.content) > 1024:
+    
+        response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
+        response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+        response = s3use1.upload_file(f'/tmp/{code}.updated',os.environ['S3_USE1'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_STAGED'],f'{code}.updated')
+        response = s3usw2.upload_file(f'/tmp/{code}.updated',os.environ['S3_USW2'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.updated')
 
     code = 'DB11LITEBIN'
     url = f'https://www.ip2location.com/download/?token={token["token"]}&file={code}&format=bin'
@@ -46,10 +57,20 @@ def handler(event, context):
         f.write(response.content)
     f.close()
 
-    response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
-    response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+    with open(f'/tmp/{code}.updated', 'w') as f:
+        f.write(now)
+    f.close()
+
+    if len(response.content) > 1024:
+
+        response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
+        response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+        response = s3use1.upload_file(f'/tmp/{code}.updated',os.environ['S3_USE1'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_STAGED'],f'{code}.updated')
+        response = s3usw2.upload_file(f'/tmp/{code}.updated',os.environ['S3_USW2'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.updated')
 
     code = 'DB11LITEBINIPV6'
     url = f'https://www.ip2location.com/download/?token={token["token"]}&file={code}&format=bin'
@@ -60,10 +81,20 @@ def handler(event, context):
         f.write(response.content)
     f.close()
 
-    response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
-    response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+    with open(f'/tmp/{code}.updated', 'w') as f:
+        f.write(now)
+    f.close()
+
+    if len(response.content) > 1024:
+
+        response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
+        response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+        response = s3use1.upload_file(f'/tmp/{code}.updated',os.environ['S3_USE1'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_STAGED'],f'{code}.updated')
+        response = s3usw2.upload_file(f'/tmp/{code}.updated',os.environ['S3_USW2'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.updated')
 
     code = 'DBASNLITEBIN'
     url = f'https://www.ip2location.com/download/?token={token["token"]}&file={code}&format=bin'
@@ -74,10 +105,20 @@ def handler(event, context):
         f.write(response.content)
     f.close()
 
-    response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
-    response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+    with open(f'/tmp/{code}.updated', 'w') as f:
+        f.write(now)
+    f.close()
+
+    if len(response.content) > 1024:
+
+        response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
+        response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+        response = s3use1.upload_file(f'/tmp/{code}.updated',os.environ['S3_USE1'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_STAGED'],f'{code}.updated')
+        response = s3usw2.upload_file(f'/tmp/{code}.updated',os.environ['S3_USW2'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.updated')
 
     code = 'DBASNLITEBINIPV6'
     url = f'https://www.ip2location.com/download/?token={token["token"]}&file={code}&format=bin'
@@ -88,10 +129,20 @@ def handler(event, context):
         f.write(response.content)
     f.close()
 
-    response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
-    response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
-    response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+    with open(f'/tmp/{code}.updated', 'w') as f:
+        f.write(now)
+    f.close()
+
+    if len(response.content) > 1024:
+
+        response = s3use1.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USE1'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_STAGED'],f'{code}.BIN.ZIP')
+        response = s3usw2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_USW2'],f'{code}.BIN.ZIP')
+        response = s3use2.upload_file(f'/tmp/{code}.BIN.ZIP',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.BIN.ZIP')
+        response = s3use1.upload_file(f'/tmp/{code}.updated',os.environ['S3_USE1'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_STAGED'],f'{code}.updated')
+        response = s3usw2.upload_file(f'/tmp/{code}.updated',os.environ['S3_USW2'],f'{code}.updated')
+        response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.updated')
 
     os.system('ls -lh /tmp')
 

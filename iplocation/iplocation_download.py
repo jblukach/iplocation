@@ -219,7 +219,7 @@ class IpLocationDownload(Stack):
             ),
             ephemeral_storage_size = Size.gibibytes(2),
             timeout = Duration.seconds(900),
-            memory_size = 2048,
+            memory_size = 3000,
             role = role,
             layers = [
                 requests
