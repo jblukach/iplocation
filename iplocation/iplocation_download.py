@@ -170,7 +170,8 @@ class IpLocationDownload(Stack):
             self, 'secret',
             secret_name = 'iplocation',
             secret_object_value = {
-                "token": SecretValue.unsafe_plain_text("<EMPTY>")
+                "token": SecretValue.unsafe_plain_text("<EMPTY>"),
+                "github": SecretValue.unsafe_plain_text("<EMPTY>")
             }
         )
 
