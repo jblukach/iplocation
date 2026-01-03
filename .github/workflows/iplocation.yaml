@@ -44,7 +44,7 @@ jobs:
       - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/PX12LITEBIN.updated .
       - run: unzip -o PX12LITEBIN.BIN.ZIP -d .
       - run: rm PX12LITEBIN.BIN.ZIP
-      - run: ls -la .
+      - run: ls -lh .
       # Deploy CDK Stack to Amazon Cloud
       - run: npm install -g aws-cdk
       - run: npm install -g aws-cdk-lib
