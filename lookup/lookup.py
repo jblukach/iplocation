@@ -3,7 +3,7 @@ import os
 
 def handler(event, context):
 
-    os.system('ls -lh /app')
+    os.system('ls -lh /var/task')
 
     return {
         'statusCode': 200,
