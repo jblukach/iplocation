@@ -9,7 +9,7 @@ RUN dnf install -y unzip \
 
 WORKDIR /var/task
 
-RUN aws s3 cp s3://iplocation-staged-use1-lukach-io/DB11LITEBIN.BIN.ZIP .
+RUN aws s3 cp s3://iplocation-staged-use2-lukach-io/DB11LITEBIN.BIN.ZIP .
 RUN unzip DB11LITEBIN.BIN.ZIP -d .
 
 COPY lookup.py requirements.txt .
