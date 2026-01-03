@@ -176,3 +176,35 @@ class IpLocationStack(Stack):
                 ]
             )
         )
+
+        github.add_to_policy(
+            _iam.PolicyStatement(
+                actions = [
+                    'ecr:GetAuthorizationToken'
+                ],
+                resources = [
+                    '*'
+                ]
+            )
+        )
+
+        github.add_to_policy(
+            _iam.PolicyStatement(
+                actions = [
+                    'ecr:PutImage',
+                    'ecr:InitiateLayerUpload',
+                    'ecr:UploadLayerPart',
+                    'ecr:CompleteLayerUpload',
+                    'ecr:BatchCheckLayerAvailability',
+                    'ecr:DescribeRepositories',
+                    'ecr:DescribeImages',
+                    'ecr:BatchGetImage',
+                    'ecr:GetDownloadUrlForLayer'
+                ],
+                resources = [
+                    'arn:aws:ecr:us-east-1:'+str(account)+':repository/cdk-lukach-container-assets-'+str(account)+'-us-east-1',
+                    'arn:aws:ecr:us-east-2:'+str(account)+':repository/cdk-lukach-container-assets-'+str(account)+'-us-east-2',
+                    'arn:aws:ecr:us-west-2:'+str(account)+':repository/cdk-lukach-container-assets-'+str(account)+'-us-west-2'
+                ]
+            )
+        )

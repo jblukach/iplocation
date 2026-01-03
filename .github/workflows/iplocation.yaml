@@ -19,10 +19,33 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ROLE }}
           aws-region: us-east-1
+      # Download DB11LITEBIN from S3 with OIDC
       - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DB11LITEBIN.BIN.ZIP .
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DB11LITEBIN.updated .
       - run: unzip DB11LITEBIN.BIN.ZIP -d .
       - run: rm DB11LITEBIN.BIN.ZIP
+      # Download DB11LITEBINIPV6 from S3 with OIDC
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DB11LITEBINIPV6.BIN.ZIP .
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DB11LITEBINIPV6.updated .
+      - run: unzip DB11LITEBINIPV6.BIN.ZIP -d .
+      - run: rm DB11LITEBINIPV6.BIN.ZIP
+      # Download DBASNLITEBIN from S3 with OIDC
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DBASNLITEBIN.BIN.ZIP .
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DBASNLITEBIN.updated .
+      - run: unzip DBASNLITEBIN.BIN.ZIP -d .
+      - run: rm DBASNLITEBIN.BIN.ZIP
+      # Download DBASNLITEBINIPV6 from S3 with OIDC
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DBASNLITEBINIPV6.BIN.ZIP .
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/DBASNLITEBINIPV6.updated .
+      - run: unzip DBASNLITEBINIPV6.BIN.ZIP -d .
+      - run: rm DBASNLITEBINIPV6.BIN.ZIP
+      # Download PX12LITEBIN from S3 with OIDC
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/PX12LITEBIN.BIN.ZIP .
+      - run: aws s3 cp s3://iplocation-staged-use1-lukach-io/PX12LITEBIN.updated .
+      - run: unzip PX12LITEBIN.BIN.ZIP -d .
+      - run: rm PX12LITEBIN.BIN.ZIP
       - run: ls -la .
+      # Deploy CDK Stack to Amazon Cloud
       - run: npm install -g aws-cdk
       - run: npm install -g aws-cdk-lib
       - run: python -m pip install --upgrade pip
