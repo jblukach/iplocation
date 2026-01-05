@@ -53,6 +53,10 @@ def handler(event, context):
     proxy = proxydb.get_all(ip)
     proxydb.close()
 
+    print(asn)
+    print(db)
+    print(proxy)
+
     f = open('PX12LITEBIN.updated', 'r')
     proxyupdated = f.read()
     f.close()
@@ -64,6 +68,7 @@ def handler(event, context):
         'ip':str(ip),
         'asn': asn,
         'db': db,
+        'proxy': proxy,
         'attribution':desc,
         'IP2LOCATION-LITE-ASN':asnupdated,
         'IP2LOCATION-LITE-DB11':dbupdated,
