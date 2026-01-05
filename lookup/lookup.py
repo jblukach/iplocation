@@ -1,4 +1,5 @@
 import IP2Location
+import IP2Proxy
 import ipaddress
 import json
 import os
@@ -16,7 +17,8 @@ def handler(event, context):
     asnipv6db = IP2Location.IP2Location('IP2LOCATION-LITE-ASN.IPV6.BIN')
     cityipv4db = IP2Location.IP2Location('IP2LOCATION-LITE-DB11.BIN')
     cityipv6db = IP2Location.IP2Location('IP2LOCATION-LITE-DB11.IPV6.BIN')
-    proxydb = IP2Location.IP2Location('IP2PROXY-LITE-PX12.BIN')
+    proxydb = IP2Proxy.IP2Proxy()
+    proxydb.open('IP2PROXY-LITE-PX12.BIN')
         
     asnipv4 = asnipv4db.get_all(ip)
     print(type(asnipv4))
@@ -25,6 +27,8 @@ def handler(event, context):
     cityipv4 = cityipv4db.get_all(ip)
     cityipv6 = cityipv6db.get_all(ip)
     proxyaddr = proxydb.get_all(ip)
+
+    proxydb.close()
 
     f = open('DBASNLITEBIN.updated', 'r')
     asnipv4updated = f.read()
