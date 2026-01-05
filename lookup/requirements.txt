@@ -1,1 +1,1 @@
-ip2Location
+IP2Location
