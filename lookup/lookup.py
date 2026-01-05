@@ -1,4 +1,4 @@
-import ip2location
+import IP2Location
 import ipaddress
 import json
 import os
@@ -14,11 +14,11 @@ def handler(event, context):
             ip = ipaddress.ip_address(event['requestContext']['http']['sourceIp'])
             ip = str(event['requestContext']['http']['sourceIp'])
 
-        asnipv4db = ip2location.ip2location('IP2LOCATION-LITE-ASN.BIN')
-        asnipv6db = ip2location.ip2location('IP2LOCATION-LITE-ASN.IPV6.BIN')
-        cityipv4db = ip2location.ip2location('IP2LOCATION-LITE-DB11.BIN')
-        cityipv6db = ip2location.ip2location('IP2LOCATION-LITE-DB11.IPV6.BIN')
-        proxydb = ip2location.ip2location('IP2PROXY-LITE-PX12.BIN')
+        asnipv4db = IP2Location.IP2Location('IP2LOCATION-LITE-ASN.BIN')
+        asnipv6db = IP2Location.IP2Location('IP2LOCATION-LITE-ASN.IPV6.BIN')
+        cityipv4db = IP2Location.IP2Location('IP2LOCATION-LITE-DB11.BIN')
+        cityipv6db = IP2Location.IP2Location('IP2LOCATION-LITE-DB11.IPV6.BIN')
+        proxydb = IP2Location.IP2Location('IP2PROXY-LITE-PX12.BIN')
         
         asnipv4 = asnipv4db.get_all(ip)
         asnipv6 = asnipv6db.get_all(ip)
