@@ -75,3 +75,53 @@ class IpLocationLookupUsw2(Stack):
 
         staged.add_to_resource_policy(object_policy_one)
 
+    ### IAM ROLE ###
+
+        role = _iam.Role(
+            self, 'role',
+            assumed_by = _iam.ServicePrincipal(
+                'lambda.amazonaws.com'
+            )
+        )
+
+        role.add_managed_policy(
+            _iam.ManagedPolicy.from_aws_managed_policy_name(
+                'service-role/AWSLambdaBasicExecutionRole'
+            )
+        )
+
+        role.add_to_policy(
+            _iam.PolicyStatement(
+                actions = [
+                    'apigateway:GET'
+                ],
+                resources = [
+                    '*'
+                ]
+            )
+        )
+
+    ### LAMBDA FUNCTION ###
+
+        compute = _lambda.DockerImageFunction(
+            self, 'compute',
+            function_name = 'lookup',
+            code = _lambda.DockerImageCode.from_image_asset('lookup'),
+            timeout = Duration.seconds(7),
+            memory_size = 128,
+            role = role
+        )
+
+        composite = _iam.CompositePrincipal(
+            _iam.OrganizationPrincipal(organization.string_value),
+            _iam.ServicePrincipal('apigateway.amazonaws.com')
+        )
+
+        compute.grant_invoke_composite_principal(composite)
+
+        logs = _logs.LogGroup(
+            self, 'logs',
+            log_group_name = '/aws/lambda/'+compute.function_name,
+            retention = _logs.RetentionDays.ONE_WEEK,
+            removal_policy = RemovalPolicy.DESTROY
+        )

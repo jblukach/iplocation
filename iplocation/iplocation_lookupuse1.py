@@ -104,8 +104,8 @@ class IpLocationLookupUse1(Stack):
             self, 'compute',
             function_name = 'lookup',
             code = _lambda.DockerImageCode.from_image_asset('lookup'),
-            timeout = Duration.seconds(30),
-            memory_size = 256,
+            timeout = Duration.seconds(7),
+            memory_size = 128,
             role = role
         )
 
