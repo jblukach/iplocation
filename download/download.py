@@ -1,3 +1,4 @@
+import base64
 import boto3
 import datetime
 import json
@@ -145,6 +146,39 @@ def handler(event, context):
         response = s3use2.upload_file(f'/tmp/{code}.updated',os.environ['S3_RESEARCH'],year+'/'+month+'/'+day+'/'+hour+f'/{code}.updated')
 
     os.system('ls -lh /tmp')
+
+    with open('/tmp/Dockerfile', 'w') as w:
+        w.write('# '+str(now)+'\n')
+        w.write('FROM public.ecr.aws/lambda/python:latest\n')
+        w.write('WORKDIR /var/task\n')
+        w.write('COPY IP2LOCATION-LITE-ASN.BIN IP2LOCATION-LITE-ASN.IPV6.BIN IP2LOCATION-LITE-DB11.BIN IP2LOCATION-LITE-DB11.IPV6.BIN IP2PROXY-LITE-PX12.BIN .\n')
+        w.write('COPY DBASNLITEBIN.updated DBASNLITEBINIPV6.updated DB11LITEBIN.updated DB11LITEBINIPV6.updated PX12LITEBIN.updated .\n')
+        w.write('COPY lookup.py requirements.txt .\n')
+        w.write('RUN pip --no-cache-dir install -r requirements.txt --upgrade\n')
+        w.write('CMD ["lookup.handler"]')
+    w.close()
+
+    headers = {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': 'Bearer '+token['github'],
+        'X-GitHub-Api-Version': '2022-11-28'
+    }
+
+    url = 'https://api.github.com/repos/jblukach/iplocation/contents/lookup/Dockerfile'
+
+    with open('/tmp/Dockerfile', 'r') as f:
+        content = f.read()
+    f.close()
+
+    content = base64.b64encode(content.encode()).decode()
+
+    data = {
+        'message': 'Updating Dockerfile '+str(now),
+        'content': content
+    }
+
+    response = requests.put(url, headers=headers, json=data)
+    print(response.json())
 
     return {
         'statusCode': 200,
