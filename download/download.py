@@ -166,6 +166,18 @@ def handler(event, context):
 
     url = 'https://api.github.com/repos/jblukach/iplocation/contents/lookup/Dockerfile'
 
+    response = requests.get(url, headers=headers)
+    sha = response.json()['sha']
+    print(response.json())
+
+    url = 'https://api.github.com/repos/jblukach/iplocation/contents/lookup/Dockerfile'
+
+    headers = {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': 'Bearer '+token['github'],
+        'X-GitHub-Api-Version': '2022-11-28'
+    }
+
     with open('/tmp/Dockerfile', 'r') as f:
         content = f.read()
     f.close()
@@ -173,8 +185,9 @@ def handler(event, context):
     content = base64.b64encode(content.encode()).decode()
 
     data = {
-        'message': 'Updating Dockerfile '+str(now),
-        'content': content
+        'message': 'Dockerfile Updated: '+str(now),
+        'content': content,
+        'sha': sha
     }
 
     response = requests.put(url, headers=headers, json=data)

@@ -85,32 +85,6 @@ Benefits of the integrated approach:
 - Easier ingestion into logs, metrics, and traces
 - Ideal for serverless, SIEM, and observability platforms
 
-### Sample Response
-
-```json
-{
-  "ip": "134.129.111.111",
-  "geo": {
-    "country_short": "US",
-    "country_long": "United States of America",
-    "region": "North Dakota",
-    "city": "Fargo",
-    "latitude": "46.877190",
-    "longitude": "-96.789803",
-    "zip": "58105",
-    "timezone": "-06:00"
-  },
-  "asn": {
-    "asn": "19530",
-    "as_name": "State of North Dakota Itd"
-  },
-  "proxy": {
-    "is_proxy": 0,
-    "proxy_type": "-"
-  }
-}
-```
-
 ---
 
 ## 5. How to use
@@ -119,9 +93,7 @@ Benefits of the integrated approach:
 
 Perform a lookup by issuing a GET request with an IP address:
 
-```bash
-curl "https://api.lukach.io/geo/ip2location?134.129.111.111"
-```
+🔗 **[https://api.lukach.io/geo/ip2location?134.129.111.111](https://api.lukach.io/geo/ip2location?134.129.111.111)**
 
 The API returns a structured JSON document containing:
 
@@ -141,6 +113,76 @@ The API can be integrated into:
 - Custom applications and APIs
 
 Because the output is JSON, it is compatible with most languages and frameworks without additional parsing libraries.
+
+### Sample Response
+
+```json
+{
+    "ip": "134.129.111.111",
+    "geo": {
+        "country_short": "US",
+        "country_long": "United States of America",
+        "region": "North Dakota",
+        "city": "Fargo",
+        "latitude": "46.877190",
+        "longitude": "-96.789803",
+        "zip": "58105",
+        "timezone": "-06:00"
+    },
+    "asn": {
+        "asn": "19530",
+        "as_name": "State of North Dakota Itd",
+        "as_domain": "-",
+        "as_usagetype": "-",
+        "as_cidr": "-",
+        "country_short": "-",
+        "country_long": "-",
+        "region": "-",
+        "city": "-",
+        "isp": "-",
+        "latitude": "0.000000",
+        "longitude": "0.000000",
+        "domain": "-",
+        "zipcode": "-",
+        "timezone": "-",
+        "netspeed": "-",
+        "idd_code": "-",
+        "area_code": "-",
+        "weather_code": "-",
+        "weather_name": "-",
+        "mcc": "-",
+        "mnc": "-",
+        "mobile_brand": "-",
+        "elevation": "0",
+        "usage_type": "-",
+        "address_type": "-",
+        "category": "-",
+        "district": "-"
+    },
+    "proxy": {
+        "is_proxy": 0,
+        "proxy_type": "-",
+        "country_short": "-",
+        "country_long": "-",
+        "region": "-",
+        "city": "-",
+        "isp": "-",
+        "domain": "-",
+        "usage_type": "-",
+        "asn": "-",
+        "as_name": "-",
+        "last_seen": "-",
+        "threat": "-",
+        "provider": "-",
+        "fraud_score": "-"
+    },
+    "attribution": "The lukach.io API uses the IP2Location LITE database for IP geolocation from https://lite.ip2location.com.",
+    "IP2LOCATION-LITE-ASN": "Sun, 04 Jan 2026 11:00:47 GMT",
+    "IP2LOCATION-LITE-DB11": "Sun, 04 Jan 2026 11:00:47 GMT",
+    "IP2PROXY-LITE-PX12": "Sun, 04 Jan 2026 11:00:47 GMT",
+    "region": "us-east-1"
+}
+```
 
 ---
 
